@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import './Card.css';
-
 import { FetchApi } from '../Api/Api';
 
 function Card() {
@@ -24,7 +23,7 @@ function Card() {
     };
 
     const searchedData = data.filter(item =>
-        item.name.common.toLowerCase().includes(searchQuery.toLowerCase())
+        item.common.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     if (!data.length) {
@@ -43,12 +42,16 @@ function Card() {
                 />
             </div>
             <div className='container'>
-                {searchedData.map((item, index) => (
-                    <div key={index} className='countryCard'> 
-                        <img src={item.flags.png} alt={item.name.common} className='image' /> 
-                        <h2 className='title'>{item.name.common}</h2>
-                    </div>
-                ))}
+                {searchedData.length > 0 ? (
+                    searchedData.map((item, index) => (
+                        <div key={index} className='countryCard'> 
+                            <img src={item.png} alt={item.common} className='image' /> 
+                            <h2 className='title'>{item.common}</h2>
+                        </div>
+                    ))
+                ) : (
+                    <div>No countries found.</div>
+                )}
             </div>
         </div>
     );

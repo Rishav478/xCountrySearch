@@ -1,15 +1,14 @@
 import axios from 'axios';
 
-export const URL = 'https://restcountries.com/v3.1/all';
+export const URL = 'https://countries-search-data-prod-812920491762.asia-south1.run.app/countries';
 
-export const FetchApi = async()=>{
-    try{
+export const FetchApi = async () => {
+    try {
         let response = await axios.get(URL);
-        console.log(response.data);
+        console.log("API First Item:", response.data[0]); // <-- Helpful for debugging
         return response.data;
-    }
-    catch(error){
-        console.error('Error fetching data: ',error);
+    } catch (error) {
+        console.error('Error fetching data: ', error);
         return [];
     }
-}
+};
